@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>My Todo</title>
+  <link rel="stylesheet" href="assets/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+
+  <template id="component-get-todo">
+      <div id="get-todo" >
+        <div class="input-group">
+            <input id="addTodo" class="form-control" type="text" :value="newTodo" @keyup="getTodo" placeholder="I need to ...">
+            <div class="input-group-btn">
+              <button :disabled="newTodo === ''" class="btn btn-default" type="button" @click="addTodo">Add Todo</button>
+            </div>
+        </div>
+      </div>
+    </template>
+
+  <template id='component-current-todos'>
+      <div id="current-todos" class="card-container">
+        <div class="content">
+          <h3 class="header">Current({{todos.length}})</h3>
+          <ul>
+            <li class="card" v-for="todo in todos">
+              <label>{{todo.detail}}</label>
+
+              <button class="close" type="button" @click="remove(todo)"><span><i class="glyphicon glyphicon-remove"></i></span></button>
+              <button class="close" type="button" @click="edit(todo)"><span><i class="glyphicon glyphicon-pencil"></i></span></button>
+              <button class="close" type="button" @click="done(todo)"><span><i class="glyphicon glyphicon-ok"></i></span></button>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </template>
+
+  <template id="component-completed-todos">
+      <div id="completed-todos" class="card-container">
+        <div class="content">
+          <h3 class="header">Completed({{completed.length}})</h3>
+          <ul>
+            <li class="card" v-for="todo in completed">
+              <label for="">{{todo.detail}}</label>
+              <button class="close" type="button" @click="remove(todo)"><span><i class="glyphicon glyphicon-remove"></i></span></button>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </template>
+
+  <template id="app-layout">
+    <div class='container'>
+      <div class="row">
+        <get-todo class="col-md-6"></get-todo>
+      </div>
+      <div class="row">
+      </div>
+      <div class="row">
+        <todo-list class="col-lg-6 col-md-6 col-xs-6"></todo-list>
+        <complete-todo  class="col-lg-6 col-md-6 col-xs-6"></complete-todo>
+      </div>
+
+    </div>
+  </template>
+
+  <div id="app">
+
+  </div>
+
+  <footer>
+    Edans
+  </footer>
+
+  <script type="text/javascript" src="assets/plugins/vue/vue.js"></script>
+  <script type="text/javascript" src="assets/plugins/vue/vuex.js"></script>
+  <script type="text/javascript" src="assets/plugins/vue/vue-resource.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+</body>
+
+</html>
